@@ -18,8 +18,8 @@ Button::Button(void* instance, String name, bool isInverted, uint16_t delayUntil
 }
 Button::~Button() {
 }
-void Button::Check(uint32_t ticks) {
-  mPeriod->Check(ticks);
+void Button::Check() {
+  mPeriod->Check();
 }
 void Button::OnPeriodExpiredStatic(void* instance) {
   Button* bt = (Button*)instance;

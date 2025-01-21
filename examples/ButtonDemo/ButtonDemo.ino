@@ -18,7 +18,8 @@ void setup() {
   Serial.begin(115200);
 }
 void loop() {
-  button1.Check(millis());
+  //MUST CALL THIS FUNCTION IN THE LOOP.
+  button1.Check();
 }
 void on_button(void* instance, String name, bool pressed, bool firstTime) {
   Serial.print("Name: ");
@@ -29,6 +30,8 @@ void on_button(void* instance, String name, bool pressed, bool firstTime) {
   Serial.print(firstTime);
   Serial.println();
 }
+//Function below simulates button state 5 seconds pressed and 5 seconds released.
+//You can get state of button pin instead.
 bool on_get_button_state(String name) {
   return millis() % 10000 < 5000;
 }

@@ -11,7 +11,7 @@ public:
 public:
   Button(void* instance, String name, bool isInverted, uint16_t delayUntilFirstReactionIn10MS, uint16_t delayAfterFirstReactionIn10MS, dlgOnButton onButton, dlgGetButtonState getButtonState);
   virtual ~Button();
-  void Check(uint32_t ticks);
+  void Check();
 private:
   static void OnPeriodExpiredStatic(void* instance);
   void OnPeriodExpired();
