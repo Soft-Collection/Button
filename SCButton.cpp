@@ -1,7 +1,7 @@
-#include "Button.h"
+#include "SCButton.h"
 
-Button::Button(void* instance, String name, bool isInverted, uint16_t delayUntilFirstReactionIn10MS, uint16_t delayAfterFirstReactionIn10MS, dlgOnButton onButton, dlgGetButtonState getButtonState) {
-  mPeriod = new Period(this, 10, true, Button::OnPeriodExpiredStatic);
+SCButton::SCButton(void* instance, String name, bool isInverted, uint16_t delayUntilFirstReactionIn10MS, uint16_t delayAfterFirstReactionIn10MS, dlgOnButton onButton, dlgGetButtonState getButtonState) {
+  mPeriod = new SCPeriod(this, 10, true, SCButton::OnPeriodExpiredStatic);
   //--------------------------------------
   mCurrentButtonState = false;
   mLastButtonState = false;
@@ -16,16 +16,16 @@ Button::Button(void* instance, String name, bool isInverted, uint16_t delayUntil
   mDelayUntilFirstReactionIn10MS = delayUntilFirstReactionIn10MS;
   mDelayAfterFirstReactionIn10MS = delayAfterFirstReactionIn10MS;
 }
-Button::~Button() {
+SCButton::~SCButton() {
 }
-void Button::Check() {
+void SCButton::Check() {
   mPeriod->Check();
 }
-void Button::OnPeriodExpiredStatic(void* instance) {
-  Button* bt = (Button*)instance;
+void SCButton::OnPeriodExpiredStatic(void* instance) {
+  SCButton* bt = (SCButton*)instance;
   if (bt != NULL) bt->OnPeriodExpired();
 }
-void Button::OnPeriodExpired() {
+void SCButton::OnPeriodExpired() {
   if (!mGetButtonState) return;
   mCurrentButtonState = mGetButtonState(mName);
   if (mLastButtonState != mCurrentButtonState)  //Button state changed.

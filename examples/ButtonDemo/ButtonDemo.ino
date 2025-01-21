@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <Button.h>
+#include <SCButton.h>
 
 static void on_button(void* instance, String name, bool pressed, bool firstTime);
 static bool on_get_button_state(String name);
@@ -12,7 +12,7 @@ static bool on_get_button_state(String name);
 //5. Delay after first reaction in 10 milliseconds
 //6. Callback function
 //7. Function that decides whether the button is pressed
-Button button1(NULL, "Button1", false, 70, 10, on_button, on_get_button_state);
+SCButton button1(NULL, "Button1", false, 70, 10, on_button, on_get_button_state);
 
 void setup() {
   Serial.begin(115200);

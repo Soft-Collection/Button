@@ -1,22 +1,22 @@
-#ifndef Button_h
-#define Button_h
+#ifndef SCButton_h
+#define SCButton_h
 
 #include <Arduino.h>
-#include <Period.h>
+#include <SCPeriod.h>
 
-class Button {
+class SCButton {
 public:
   typedef void (*dlgOnButton)(void* instance, String name, bool pressed, bool firstTime);
   typedef bool (*dlgGetButtonState)(String name);
 public:
-  Button(void* instance, String name, bool isInverted, uint16_t delayUntilFirstReactionIn10MS, uint16_t delayAfterFirstReactionIn10MS, dlgOnButton onButton, dlgGetButtonState getButtonState);
-  virtual ~Button();
+  SCButton(void* instance, String name, bool isInverted, uint16_t delayUntilFirstReactionIn10MS, uint16_t delayAfterFirstReactionIn10MS, dlgOnButton onButton, dlgGetButtonState getButtonState);
+  virtual ~SCButton();
   void Check();
 private:
   static void OnPeriodExpiredStatic(void* instance);
   void OnPeriodExpired();
 private:
-  Period* mPeriod;
+  SCPeriod* mPeriod;
   //--------------------------------------
   bool mCurrentButtonState;
   bool mLastButtonState;
@@ -32,4 +32,4 @@ private:
   uint16_t mDelayAfterFirstReactionIn10MS;
 };
 
-#endif  //Button_h
+#endif  //SCButton_h
